@@ -26,11 +26,12 @@ async function someTest(beverageName) {
     await page.goTo();
     const initialBeverages = await page.getBeverages();
     const initilBeveragesEdges = initialBeverages.getEdgesCount();
-    const descendantsCount = initialBeverages.getDescendantsCount(beverageName);
+    const descendantsCount =
+        initialBeverages.getNodeDescendantsCount(beverageName);
     await page.deleteBeverageWithTitle(beverageName);
-    const updatedBeverages = await page.getBeverages;
+    const updatedBeverages = await page.getBeverages();
     expect(updatedBeverages.findBeverage(beverageName)).to.be.null;
-    expect(updatedBeverages.getEdgesCount).to.be.equal(
+    expect(updatedBeverages.getEdgesCount()).to.be.equal(
         initilBeveragesEdges - descendantsCount - 1
     );
 }
